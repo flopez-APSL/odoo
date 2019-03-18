@@ -1,5 +1,5 @@
--*- coding: utf-8 -*-
 from odoo import models, fields
+
 
 class TodoTask(models.Models):
     _name = 'todo.task' # identificador del modelo para Odoo.
