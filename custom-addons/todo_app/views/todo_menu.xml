@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<odoo>
+    <!-- Action to open To-do Task list -->
+ <!-- define una acción de ventana del lado del cliente -->
+    <act_window id="action_todo_ask"
+        name="To-do Task"
+        res_model="todo.task"
+        view_mode="tree,form"
+    />
+
+    <!-- Menu item to open To-do Task list -->
+
+    <menuitem id="menu_todo_ask"
+              name="Todos"
+              action="action_todo_ask"
+              />
+</odoo>

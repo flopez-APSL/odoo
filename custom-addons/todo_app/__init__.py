@@ -1,3 +1,3 @@
-from .models import todo_model
-
+from . import models
+from . import views
 

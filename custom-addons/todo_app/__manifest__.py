@@ -6,5 +6,11 @@
     'author': 'Fernando Lopez',
     'depends': ['mail'],
     'application': True,
+    'data': ['views/todo_menu.xml',
+             'views/todo_view.xml',
+             'views/res_partner_view.xml'],
+    'aplication': True,
+
 }
+
 
