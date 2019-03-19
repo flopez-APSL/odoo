@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import api, models, fields
 
 
 class TodoTask(models.Model):
@@ -12,6 +12,22 @@ class TodoTask(models.Model):
         string='Responsible',
         default=lambda self: self.env.user)
     team_ids = fields.Many2many('res.partner', string='Team')
+
+    @api.multi
+    def do_clear_done(self):     # el self representa el registro con sus elementos.
+        for task in self:
+            task.active = False
+        return True
+
+    @api.multi                      # clase decoradora que nos permite interactuar con los registros.
+    def write(self, values):
+        if 'active' not in values:
+            values['active'] = True
+        super().write(values)
+
+
+
+
 
 
 
