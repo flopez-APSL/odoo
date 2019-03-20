@@ -1,0 +1,22 @@
+<odoo>
+    <odoo>
+
+        <record model="openacademy.course" id="course0">
+            <field name="name">Aprende Odoo Leyendo en el baño</field>
+            <field name="description"> Curso interactivo de solo lectura.
+
+<!-- Can have multiple lines -->
+            </field>
+        </record>
+        <record model="openacademy.course" id="course1">
+            <field name="name">Django para Dummies</field>
+            <!-- no description for this one -->
+        </record>
+        <record model="openacademy.course" id="course2">
+            <field name="name">Despues de Java, Sumatra</field>
+            <field name="description">El nuevo lenguaje de POO que está arrasando</field>
+        </record>
+
+</odoo>
+</odoo>
+

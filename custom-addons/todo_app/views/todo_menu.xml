@@ -12,7 +12,7 @@
     <!-- Menu item to open To-do Task list -->
 
     <menuitem id="menu_todo_ask"
-              name="Todo"              <!-- estaba escrito en plural 'Todos' -->
+              name="Todos"
               action="action_todo_ask"
               />
 </odoo>

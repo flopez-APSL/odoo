@@ -1,0 +1,124 @@
+
+<!-- VISTA GENERICA -->
+
+<record  model = "ir.ui.view"  id = "view_id" >  <!-- fixme: tipo de vista con su id única de registro -->
+    <field  name = "name" > vista </field>
+    <field  name = "model" > modelo  </field>
+    <field  name = " arch "  type = " xml " >
+
+        <! - contenido: <form>, <tree>, <graph>, ... ->
+    </ field >
+</record>
+
+<!-- Vista arbol -->
+
+<tree string="Idea list">
+    <field name="name"/>
+    <field name="inventor_id"/>
+</tree>
+
+
+<!-- plantilla de datos -->
+
+        <record model="{model name}" id="{record identifier}">
+            <field name="{a field name}">{a value}</field>
+        </record>
+
+
+<!-- plantilla de menú -->
+
+<record model="ir.actions.act_window" id="action_list_ideas">
+    <field name="name">Ideas</field>
+    <field name="res_model">idea.idea</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+
+<menuitem id="menu_ideas" parent="menu_root" name="Ideas" sequence="10"
+          action="action_list_ideas"/>
+
+
+
+<!-- fixme MODELO BASE DE FORMULARIO -->
+<form string="Idea form">
+    <group colspan="4">
+        <group colspan="2" col="2">
+            <separator string="General stuff" colspan="2"/>
+            <field name="name"/>
+            <field name="inventor_id"/>
+        </group>
+
+        <group colspan="2" col="2">
+            <separator string="Dates" colspan="2"/>
+            <field name="active"/>
+            <field name="invent_date" readonly="1"/>
+        </group>
+
+        <notebook colspan="4">
+            <page string="Description">
+                <field name="description" nolabel="1"/>
+            </page>
+        </notebook>
+
+        <field name="state"/>
+    </group>
+</form>
+
+
+<!-- HTML PLANO para hacer formularios -->
+
+<form string="Idea Form">
+    <header>
+        <button string="Confirm" type="object" name="action_confirm"
+                states="draft" class="oe_highlight" />
+        <button string="Mark as done" type="object" name="action_done"
+                states="confirmed" class="oe_highlight"/>
+        <button string="Reset to draft" type="object" name="action_draft"
+                states="confirmed,done" />
+        <field name="state" widget="statusbar"/>
+    </header>
+    <sheet>
+        <div class="oe_title">
+            <label for="name" class="oe_edit_only" string="Idea Name" />
+            <h1><field name="name" /></h1>
+        </div>
+        <separator string="General" colspan="2" />
+        <group colspan="2" col="2">
+            <field name="description" placeholder="Idea description..." />
+        </group>
+    </sheet>
+</form>
+
+
+<!-- lista de categorías HEREDANDO-->
+<record  id = "idea_category_list2"  model = "ir.ui.view" >
+    <field  name = "name" > id.category.list2 </field>
+    <field  name = " model " > idea.category </field>
+    <field  name = " inherit_id "  ref = " id_category_list " />
+    <field  name = " arch "  type = " xml " >
+        <!-- encuentra la descripción del campo y agrega el campo
+             idea_ids después es -->
+        <xpath  expr = "// field [@ name = 'description']"  position ="after" >
+          <field  name = "idea_ids"  string = "Number of ideas" />
+        </xpath>
+    </field>
+</record>
+
+<!--                    BUSCADOR                        -->
+
+
+<search  string = "Ideas" >
+    <field  name = "name" />
+    <field  name = "description"  string = "Name and description"
+           filter_domain = "['|', ('name', 'ilike', self) , ('description', 'ilike', self)] " />
+    <field  name = " inventor_id " />
+    <field  name = " country_id "  widget = " selection " />
+
+    <filter  name = "my_ideas"  string = "My Ideas"
+            domain = "[('inventor_id', '=', uid)]" />
+    <group  string = "Group By" >
+        <filter  name = "group_by_inventor"  string = "Inventor"
+                context = "{'group_by': 'inventor_id'}" />
+    </group>
+</search>
+
