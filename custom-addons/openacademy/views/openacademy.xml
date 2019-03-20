@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
+
+                        <!--  FORMULARIO DE CURSOS -->
+
     <record model="ir.ui.view" id="course_form_view">
         <field name="name">course.form</field>
         <field name="model">openacademy.course</field>
@@ -71,7 +74,13 @@
         <field name="arch" type="xml">
             <search>
                 <field name="name"/>
-                <field name="description"/>
+                <field name="description"/>  <!-- FILTRO EN EL BUSCADOR -->
+                 <filter name="my_courses" string="My Courses"
+                            domain="[('responsible_id', '=', uid)]"/>
+                    <group string="Group By">
+                        <filter name="by_responsible" string="Responsible"
+                                context="{'group_by': 'responsible_id'}"/> <!-- AGRUPACIÓN -->
+                    </group>
             </search>
         </field>
     </record>
@@ -154,6 +163,19 @@
             </field>
         </record>
 
+    <!--                       BARRAS HORIZONTALES             -->
+
+            <record model="ir.ui.view" id="session_gantt_view">
+            <field name="name">session.gantt</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <gantt string="Session Gantt" color="course_id"
+                       date_start="start_date" date_delay="hours"
+                       default_group_by='instructor_id'>
+                    <field name="name"/>
+                </gantt>
+            </field>
+        </record>
 
     <!--                       ACCIONES EN LAS SESIONES                                -->
 
@@ -161,7 +183,7 @@
         <field name="name">Sessions</field>
         <field name="res_model">openacademy.session</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree,form,calendar</field>
+        <field name="view_mode">tree,form,calendar,gantt</field>
     </record>
 
     <menuitem id="session_menu" name="Sessions"
@@ -170,3 +192,4 @@
 
 
 </odoo>
+
