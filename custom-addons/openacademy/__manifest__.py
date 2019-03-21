@@ -28,6 +28,7 @@
         'views/openacademy.xml',
         'views/views.xml',
         'views/partner.xml',
+        'security/security.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

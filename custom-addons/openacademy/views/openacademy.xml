@@ -114,13 +114,13 @@
         <field name="arch" type="xml">
             <form string="Session Form">
                  <header>
-                        <button name="action_draft" type="object"
+                        <button name="draft" type="workflow"
                                 string="Reset to draft"
                                 states="confirmed,done"/>
-                        <button name="action_confirm" type="object"
+                        <button name="confirm" type="workflow"
                                 string="Confirm" states="draft"
                                 class="oe_highlight"/>
-                        <button name="action_done" type="object"
+                        <button name="done" type="workflow"
                                 string="Mark as done" states="confirmed"
                                 class="oe_highlight"/>
                         <field name="state" widget="statusbar"/>
@@ -254,6 +254,14 @@
     <menuitem id="session_menu" name="Sessions"
               parent="openacademy_menu"
               action="session_list_action"/>
+
+
+    <!--&lt;!&ndash; cuando más de la mitad de los asientos están reservados se autoconfirma el workflow &ndash;&gt;-->
+           <!--<record model="workflow.transition" id="session_auto_confirm_half_filled">-->
+            <!--<field name="act_from" ref="draft"/>-->
+            <!--<field name="act_to" ref="confirmed"/>-->                <!-- fixme: intenta conseguir que funcione -->
+            <!--<field name="condition">taken_seats &gt; 50</field>-->
+        <!--</record>-->
 
 
 </odoo>
