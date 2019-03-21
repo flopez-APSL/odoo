@@ -68,7 +68,8 @@ class Sessions(models.Model):
     start_date = fields.Date(default=fields.Date.today)
     duration = fields.Float(digits=(6, 2), help="Duration in days")
     seats = fields.Integer(string="Number of seats",)
-    active = fields.Boolean(default=False)
+    active = fields.Boolean(default=True)
+    color = fields.Integer()
 
     instructor_id = fields.Many2one('res.partner', string="Instructor",  # fixme: Intenta que solo los usuarios puedan ser instructores.
                                     domain=['|', ('instructor', '=', True),
@@ -89,7 +90,36 @@ class Sessions(models.Model):
     hours = fields.Float(string="Duration in hours",
                          compute='_get_hours', inverse='_set_hours')
 
-    @api.depends('seats', 'attendee_ids')          # metodo que genera el porcentaje de asientos libres
+    attendees_count = fields.Integer(
+        string="Attendees count", compute='_get_attendees_count', store=True)
+
+    # ------------- workflow ----------------------
+
+    state = fields.Selection([
+        ('draft', "Draft"),
+        ('confirmed', "Confirmed"),
+        ('done', "Done"),
+    ], default='draft')
+
+    @api.multi
+    def action_draft(self):
+        self.state = 'draft'
+
+    @api.multi
+    def action_confirm(self):
+        self.state = 'confirmed'
+
+    @api.multi
+    def action_done(self):
+        self.state = 'done'
+
+    @api.depends('attendee_ids')
+    def _get_attendees_count(self):
+        for r in self:
+            r.attendees_count = len(r.attendee_ids)
+
+    # metodo que genera el porcentaje de asientos libres
+    @api.depends('seats', 'attendee_ids')
     def _taken_seats(self):
         for r in self:
             if not r.seats:
@@ -97,8 +127,7 @@ class Sessions(models.Model):
             else:
                 r.taken_seats = 100.0 * len(r.attendee_ids) / r.seats
 
-
-
+# validador de los asientos.
     @api.onchange('seats', 'attendee_ids')
     def _verify_valid_seats(self):
         if self.seats < 0:

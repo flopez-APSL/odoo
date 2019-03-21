@@ -130,3 +130,9 @@
     </ nivel>
 </gantt>
 
+<!-- Graficos -->
+
+<graph  string = "Puntaje total de la idea por Inventor" >
+    <field  name = "inventor_id" />
+    <field  name = "score"  type = "measure" />
+</graph>
