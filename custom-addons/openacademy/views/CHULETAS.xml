@@ -136,3 +136,48 @@
     <field  name = "inventor_id" />
     <field  name = "score"  type = "measure" />
 </graph>
+
+<!-- REGLAS DE REGISTRO: EJEMPLO: IMPIDE LA ELIMINACIÓN DE CLIENTES QUE NO ESTÉN CANCELADOS -->
+
+<record id="delete_cancelled_only" model="ir.rule">
+    <field name="name">Only cancelled leads may be deleted</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="groups" eval="[(4, ref('sales_team.group_sale_manager'))]"/>
+    <field name="perm_read" eval="0"/>
+    <field name="perm_write" eval="0"/>
+    <field name="perm_create" eval="0"/>
+    <field name="perm_unlink" eval="1" />
+    <field name="domain_force">[('state','=','cancel')]</field>
+</record>
+
+<!-- INFORMES -->
+
+<report
+    id="account_invoices"
+    model="account.invoice"
+    string="Invoices"
+    report_type="qweb-pdf"
+    name="account.report_invoice"
+    file="account.report_invoice"
+    attachment_use="True"
+    attachment="(object.state in ('open','paid')) and
+        ('INV'+(object.number or '').replace('/','')+'.pdf')"
+/>
+
+<t t-call="web.html_container">
+    <t t-foreach="docs" t-as="o">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <h2>Report title</h2>
+            </div>
+        </t>
+    </t>
+</t>
+
+the standard rendering context provides a number of elements, the most
+important being:
+
+``docs``
+    the records for which the report is printed
+``user``
+    the user printing the report
