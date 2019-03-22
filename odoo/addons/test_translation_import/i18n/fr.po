@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 # Note: there is normally an additional line:
-#     #: code:addons/test_translation_import/models.py:15
+#     #: code:addons/test_translation_import/library_book_model.py:15
 # This line is present in the POT and removed here to test the translation
 # import behavior.
 #. module: test_translation_import

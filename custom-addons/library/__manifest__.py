@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "custom-addons/library",
+    'name': "Librería",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        módulo librería del tutorial de odooerpdevelopers""",
 
     'description': """
-        Long description of module's purpose
+        Una Librería.
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "Fernando  López",
+    'website': "http://apsl.net",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/11.0/odoo/addons/base/module/module_data.xml

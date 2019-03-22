@@ -22,7 +22,7 @@ class TodoTask(models.Model):
                                relation='todo_task_tag_rel',
                                column1='task_id',
                                column2='tag_id',
-                               string='Tags')           # comentarios anteriores validos para aqui.
+                               string='Tags')           # comentarios de la documentación validos para aqui.
 
 
 

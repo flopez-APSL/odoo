@@ -11,6 +11,7 @@ class TodoTask(models.Model):
         'res.users',
         string='Responsible',
         default=lambda self: self.env.user)
+
     team_ids = fields.Many2many('res.partner', string='Team')
 
     @api.multi
@@ -36,17 +37,17 @@ class TodoTask(models.Model):
         search='_search_stage_fold',
         inverse='_write_stage_fold')
 
-    @api.depends('stage_id.Fold')
-    def _compute_stage_fold(self):
-        for todo in self:
-            todo.stage_fold = todo.stage_id.fold
-
-    def _search_stage_fold(self, operator, value):
-        return [('stage_id_.fold', operator, value)]
-
-    def _write_stage_fold(self):
-        for todo in self:
-            todo.stage_id.fold = todo.stage_fold
+    # @api.depends('stage_id.Fold')
+    # def _compute_stage_fold(self):
+    #     for todo in self:
+    #         todo.stage_fold = todo.stage_id.fold
+    #
+    # def _search_stage_fold(self, operator, value):
+    #     return [('stage_id_.fold', operator, value)]
+    #
+    # def _write_stage_fold(self):
+    #     for todo in self:
+    #         todo.stage_id.fold = todo.stage_fold
 
 
 
