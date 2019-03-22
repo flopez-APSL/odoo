@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<oddo>
-
-	 	<record id="inherit_res_partner_hola_mundo_id" model="ir.ui.view">
-	 		<field name="name">res.partner.inherit</field>
-	 		<field name="model">res.partner</field>
-            <field name="type">form</field>
-            	<field name="arch" type="xml">
-            			 <field name="hola" string="Hola Mundo:" />
-                </field>
-	    </record>
-</oddo>
+<odoo>
+	<record id="inherit_res_partner_hola_mundo" model="ir.ui.view">
+		<field name="name">res.partner.inherit</field>
+		<field name="model">res.partner</field>
+		<field name="inherit_id" ref="base.view_partner_form"/>
+		<field name="arch" type="xml">
+			<field name="category_id" position="after">
+				<field name="hola" string="Hola Mundo:" />
+			</field>
+		</field>
+	</record>
+</odoo>
 

@@ -10,27 +10,26 @@ class Stage(models.Model):
     # String fields. 
     name = fields.Char('Name', translate=True)
     desc = fields.Text(_('Description'))
-    state = fields.Selection(
-        (_('draft', 'New')),
-        (_('open', 'Started')),
-        (_('done', 'Closed')),
-    )
-    docs = fields.Html(_('Documentation'))
+    state = fields.Selection([
+        ('draft', 'New'),
+        ('open', 'Started'),
+        ('done', 'Closed')], string='State')
+    docs = fields.Html('Documentation')
     
     # Numeric fields
-    sequence = fields.Integer(_('Sequence'))
-    perc_complete = fields.Float(_('% Complete', (3, 2)))
+    sequence = fields.Integer('Sequence')
+    perc_complete = fields.Float('% Complete', (3, 2))
     
     # Data fields
-    data_effective = fields.Date(_('Effective Date'))
+    data_effective = fields.Date('Effective Date')
     date_created = fields.Datetime(
-        _('Create Data a Time'),
+        'Create Data a Time',
         default=lambda self: fields.Datetime.now() # genera la fecha actual en el momento del registro
     )
     
     # Other fields:
-    fold = fields.Boolean(_('Folded?'))
-    image = fields.Binary(_('Image'))
+    fold = fields.Boolean('Folded?')
+    image = fields.Binary('Image')
     
     
 
