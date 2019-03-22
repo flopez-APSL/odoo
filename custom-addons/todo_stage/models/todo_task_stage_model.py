@@ -1,5 +1,4 @@
 from odoo import fields, models
-from odoo import _
 
 
 class Stage(models.Model):
@@ -9,7 +8,7 @@ class Stage(models.Model):
     
     # String fields. 
     name = fields.Char('Name', translate=True)
-    desc = fields.Text(_('Description'))
+    desc = fields.Text('Description')
     state = fields.Selection([
         ('draft', 'New'),
         ('open', 'Started'),
@@ -30,6 +29,10 @@ class Stage(models.Model):
     # Other fields:
     fold = fields.Boolean('Folded?')
     image = fields.Binary('Image')
+
+    task_ids = fields.One2many('todo.task',         # modelo al cual se relaciona
+                               'stage_id',          # fields for "this" on related model
+                               'Tasks in this Stage')
     
     
 
