@@ -5,7 +5,7 @@
     'version': '1.0',
     'data': [
         'views/assets.xml',
-        'views/views.xml',
+        'views/library_book_view.xml',
     ],
     'depends': ['website'],
     'auto_install': True,

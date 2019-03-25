@@ -8,7 +8,7 @@
     'depends': ['base'],
     'installable': True,
     'data': [
-        "views/views.xml",
+        "views/library_book_view.xml",
     ],
     'auto_install': False,
 }

@@ -26,7 +26,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/openacademy.xml',
-        'views/views.xml',
+        'views/library_book_view.xml',
         'views/partner.xml',
         'security/security.xml',
         'views/session_board.xml',

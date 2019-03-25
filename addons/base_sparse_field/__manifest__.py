@@ -12,6 +12,6 @@
     'version': '1.0',
     'depends': ['base'],
     'data': [
-        'views/views.xml',
+        'views/library_book_view.xml',
     ],
 }

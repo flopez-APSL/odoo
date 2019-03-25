@@ -20,3 +20,4 @@ class Tags(models.Model):
 
     task_ids = fields.Many2many('todo.task', string='Task')
 
+

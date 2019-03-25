@@ -4,36 +4,32 @@ from odoo import fields, models
 class Stage(models.Model):
     _name = 'todo.task.stage'
     _description = 'To-do Stage'
-    _order = 'secuence, name'
-    
-    # String fields. 
-    name = fields.Char('Name', translate=True)
+    _order = 'sequence,name'
+
+    # String fields:
+    name = fields.Char('Name')
     desc = fields.Text('Description')
-    state = fields.Selection([
-        ('draft', 'New'),
-        ('open', 'Started'),
-        ('done', 'Closed')], string='State')
+    state = fields.Selection(
+        [('draft', 'New'),
+         ('open', 'Started'),
+         ('done', 'Closed')],
+        'State')
     docs = fields.Html('Documentation')
-    
-    # Numeric fields
+
+    # Numeric fields:
     sequence = fields.Integer('Sequence')
     perc_complete = fields.Float('% Complete', (3, 2))
-    
-    # Data fields
-    data_effective = fields.Date('Effective Date')
-    date_created = fields.Datetime(
-        'Create Data a Time',
-        default=lambda self: fields.Datetime.now() # genera la fecha actual en el momento del registro
-    )
-    
+
+    # Date fields:
+    date_effective = fields.Date('Effective Date')
+    date_created = fields.Datetime('Create Date and Time', default=lambda self: fields.Datetime.now())
+
     # Other fields:
     fold = fields.Boolean('Folded?')
     image = fields.Binary('Image')
 
-    task_ids = fields.One2many('todo.task',         # modelo al cual se relaciona
-                               'stage_id',          # fields for "this" on related model
-                               'Tasks in this Stage')
-    
-    
-
-
+    # Stage class relationship with Tasks
+    task_ids = fields.One2many(
+        'todo.task',    # related model
+        'stage_id',     # field for "this" on related model
+        'Tasks in this stage')

@@ -9,7 +9,7 @@
     'auto_install': False,
     'data': [
         'ir.model.access.csv',
-        'views.xml',
+        'library_book_view.xml',
         'demo_data.xml',
         'template.xml',
     ],
