@@ -1,4 +1,7 @@
 <odoo>
+
+    <!-- inherit view -->
+
     <record id="library_author_view_inherit" model="ir.ui.view">
         <field name="name">library_author_view_inherit</field>
         <field name="model">library.book</field>
@@ -10,17 +13,54 @@
         </field>
     </record>
 
+    <!-- Search View -->
+
+        <record id="library_search_book_view" model="ir.ui.view">
+       <field name="name">library.search.book.view</field>
+       <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search string="Library Search Book">
+          <field name="name" string="Name"/>
+          <field name="author_id" string="Author"/>
+        </search>
+       </field>
+    </record>
+
+                         <!-- tree view -->
 
   <record id='library_author_tree_view' model='ir.ui.view'>
       <field name='name'>library.author.tree.view</field>
       <field name='model'>library.author</field>
-      <field name="arch" type="xml">
-        <tree string="Tree Book">
+      <field name="arch" type="xml">                      <!-- &lt; 1 menor que 1. &gt;= 1 mayor o igual que uno -->
+        <tree string="Tree Book" decoration-danger="count_books &lt; 1" decoration-info="count_books &gt;= 1">
           <field name="name"/>
-          <field name="active"/>
+            <field name="count_books"/>
+          <field name="country_id"/>
         </tree>
       </field>
     </record>
+
+    <!-- author view -->
+
+     <record id="library_author_view" model="ir.ui.view">
+        <field name="name">library.author.view</field>
+        <field name="model">library.author</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="active"/>
+                        <field name="country_id"/>
+                    </group>
+                    <group>
+                        <field name="book_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
 
  <!-- Action menuAuthor-->
 
@@ -35,6 +75,5 @@
       <menuitem id="library_author_menu" name="Author" sequence="1" parent="library.library_menu_root"/>
       <menuitem id="action_library_author_menu" name="Author" sequence="1" parent="library_author_menu"
                 action="action_author_tree_view"/>
-
 
     </odoo>
