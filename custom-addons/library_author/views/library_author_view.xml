@@ -1,0 +1,40 @@
+<odoo>
+    <record id="library_author_view_inherit" model="ir.ui.view">
+        <field name="name">library_author_view_inherit</field>
+        <field name="model">library.book</field>
+        <field name="inherit_id" ref="library.library_book_form_view"/>
+        <field name="arch" type="xml">
+                <field name="category_id" position="after">
+                    <field name="author_id"/>
+                </field>
+        </field>
+    </record>
+
+
+  <record id='library_author_tree_view' model='ir.ui.view'>
+      <field name='name'>library.author.tree.view</field>
+      <field name='model'>library.author</field>
+      <field name="arch" type="xml">
+        <tree string="Tree Book">
+          <field name="name"/>
+          <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+ <!-- Action menuAuthor-->
+
+    <record id="action_author_tree_view" model="ir.actions.act_window">
+      <field name="name">Author</field>
+      <field name="res_model">library.author</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+      <menuitem id="library_author_menu" name="Author" sequence="1" parent="library.library_menu_root"/>
+      <menuitem id="action_library_author_menu" name="Author" sequence="1" parent="library_author_menu"
+                action="action_author_tree_view"/>
+
+
+    </odoo>

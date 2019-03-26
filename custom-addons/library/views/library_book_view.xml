@@ -13,7 +13,6 @@
         <group>
           <field name="name"/>
           <field name="active"/>
-          <field name="autor"/>
           <field name="isbn"/>
           <field name="category_id"/>
         </group>
@@ -50,8 +49,10 @@
       <!--Menu-->
 
       <menuitem id="library_menu_root" name="Library" sequence="1"/>
-      <menuitem id="library_menu_root_category" name="Books" sequence="1" parent="library_menu_root"/>
-      <menuitem id="action_library_menu_book" name="Book" sequence="1" parent="library_menu_root_category"
+      <menuitem id="library_menu_root_category" name="Library" sequence="1" parent="library_menu_root"/>
+      <menuitem id="action_library_menu_book" name="Books" sequence="1" parent="library_menu_root_category"
                 action="action_library_book"/>
+
+
 
 </odoo>
