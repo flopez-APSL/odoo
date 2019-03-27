@@ -28,10 +28,6 @@ class TodoTask(models.Model):
 
 
 
-                                    
-
-
-
 
 
 

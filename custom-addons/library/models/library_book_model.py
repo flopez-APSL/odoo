@@ -14,6 +14,7 @@ class LibraryBook(models.Model):
     sales = fields.Integer(string="Sales", required=False, default=0)
     winner = fields.Char(compute='mostsold', string="Sales Record", required=False)
     category_id = fields.Many2one('library.category', string='Category')
+    short_name = fields.Char('Short Title')
 
     @api.depends('sales')
     def mostsold(self):
