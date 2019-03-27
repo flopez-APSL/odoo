@@ -4,7 +4,6 @@ from odoo.exceptions import AccessError
 
 class TestTodo(TransactionCase):
 
-
     def test_create(self):
         """comprueba que esté el atributo 'is done' por defecto en False.
         """

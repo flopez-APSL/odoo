@@ -17,6 +17,3 @@ class LibraryAuthor(models.Model):
     def total_books(self):
         for record in self:
             record.count_books = len(record.book_ids)
-
-
-

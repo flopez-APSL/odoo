@@ -1,0 +1,103 @@
+<!-- Inherit Form View to Modify it -->
+<odoo>
+
+   <notebook>
+       <page string="">
+           <group>
+               <field name=""/>
+           </group>
+       </page>
+   </notebook>
+
+    <record id="" model="ir.ui.view">
+     <field name="name"></field>
+      <field name="model"></field>
+     <field name="arch" type="xml">
+        <kanban>
+       <field name="name"/>
+     <templates>
+     <t t-name="kanban-box">
+     </t>
+     </templates>
+     </kanban>
+     </field>
+    </record>
+
+    
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>HEAD_1</th>
+            <th class="text-right">HEAD_2</th>
+            <th class="text-right">HEAD_3</th>
+            <th class="text-right">HEAD_4</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr t-foreach="o.OBJECTS" t-as="OBJECT">
+            <t t-if="len(taxline['level']) > 5">
+                <t t-set="style" t-value="'font-weight:normal;'"/>
+            </t>
+            <t t-if="not len(taxline['level']) > 5">
+                <t t-set="style" t-value="'font-weight:bold;'"/>
+            </t>
+
+            <td>
+                <span t-att-style="style" t-esc="taxline['level']" style="color:white;"/>
+                <span t-att-style="style" t-if="taxline['code']" t-esc="taxline['code']"/>
+                <span t-att-style="style" t-esc="taxline['name']"/>
+            </td>
+            <td class="text-right"><span t-att-style="style" t-esc="taxline['debit']"/></td>
+            <td class="text-right"><span t-att-style="style" t-esc="taxline['credit']"/></td>
+            <td class="text-right">
+                <span t-att-style="style" t-esc="formatLang(taxline['tax_amount'], currency_obj=res_company.currency_id)"/>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+    <page string="">
+        <group>
+            <field name=""/>
+        </group>
+    </page>
+
+    <record id="" model="workflow.activity">
+        <field name="wkf_id" ref=""/>
+        <!--<field name="flow_start">True</field>-->
+        <!--<field name="flow_stop">True</field>-->
+        <field name="name"></field>
+        <field name="kind">function</field>
+        <field name="action">METHOD_NAME()</field>
+    </record>
+
+    <!-- QWeb Reports -->
+    <!-- NAME & FILE_NAME should be the same -->
+            <report
+                id="UNIQUE_REPORT_ID"
+                model="MODEL_WHERE_THE_REPORT_WILL_BE_PRINTED"
+                report_type="qweb-pdf"
+                string="LABEL"
+                name="NAME"
+                file="FILE_NAME"
+            />
+
+    <div class="oe_button_box" name="expense_button_box">
+            <button name="toggle_active"
+                    type="object"
+                    confirm="(Un)archiving a project automatically (un)archives its tasks and issues. Do you want to proceed?"
+                    class="oe_stat_button"
+                    icon="fa-archive">
+                    <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+            </button>
+    </div>
+
+    <button name="button_method_name" type="object" string="ObjectButton"/>
+
+    <xpath expr="//field[@name='name']" position="">
+        <!-- Add your fields or attributes here -->
+    </xpath>
+
+
+
+</odoo>

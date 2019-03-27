@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="library_book_n1" model="library.book" >
+            <field name="name">Libro cargado por Demo</field>
+            <field name="active">True</field>
+            <field name="isbn">9999999999</field>
+            <field name="description">Libro cargado a través de los datas para realizar las pruebas demo</field>
+        </record>
+
+    </data>
+
+</odoo>
