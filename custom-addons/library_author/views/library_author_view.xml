@@ -54,7 +54,7 @@
                         <field name="country_id"/>
                     </group>
                     <group>
-                        <field name="book_ids"/>
+                        <field name="book_ids" widget="many2many_tags"/>
                     </group>
                     <field name="book_id"/>
                 </sheet>

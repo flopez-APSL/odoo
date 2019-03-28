@@ -10,9 +10,10 @@
     <field name="arch" type="xml">
       <form>
         <field name="image" widget="image"/>
-        <group>
-          <button type="action" name="action_library_book_information_author" string="Author Information" />
-        </group>
+        <header>
+          <button type="object" name="action_library_book_information_author" string="Author Information"
+          class="btn btn-primary"/>
+        </header>
         <group>
           <field name="name"/>
           <field name="author"/>

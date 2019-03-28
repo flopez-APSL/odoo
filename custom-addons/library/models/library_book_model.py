@@ -38,13 +38,14 @@ class LibraryBook(models.Model):
     def check_name(self):
         if not self.name:
             raise exceptions.ValidationError('Registre los campos obligatorios')
-        
+
+    @api.multi
     def action_library_book_information_author(self):
         return {
-                "name": "Author Information",
-                "view_type": "form",
-                "view_mode": "form",
-                "res_model": "library.author",
-                "type": "ir.actions.act_window",
-                "red_id": self.author.id
-            }
+            "name": "Author Information",
+            "view_type": "form",
+            "view_mode": "form",
+            "res_model": "library.author",
+            "type": "ir.actions.act_window",
+            "red_id": self.id,
+        }
