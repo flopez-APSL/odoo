@@ -11,11 +11,15 @@
       <form>
         <field name="image" widget="image"/>
         <group>
+          <button type="action" name="action_library_book_information_author" string="Author Information" />
+        </group>
+        <group>
           <field name="name"/>
+          <field name="author"/>
+          <field name="sales"/>
           <field name="active"/>
           <field name="isbn"/>
           <field name="category_id"/>
-          <field name="sales"/>
         </group>
         <group>
           <field name="description"/>
@@ -24,6 +28,7 @@
     </field>
   </record>
 
+  
     <!-- Tree -->
 
       <record id='library_book_tree_view' model='ir.ui.view'>
@@ -33,15 +38,11 @@
         <tree string="Tree Book">
           <field name="name"/>
           <field name="active"/>
-          <field name="winner" attrs="{'invisible': [('name', '!=', 'winner')]}"/>
+          <field name="winner"/>        <!-- ttrs="{'invisible': [('name', '!=', 'winner')]}" -->
           <field name="isbn"/>
         </tree>
       </field>
     </record>
-
-
-
-
 
 
     <!-- Action -->
@@ -53,13 +54,27 @@
       <field name="view_mode">tree,form</field>
     </record>
 
+  <!-- action information -->
+
+  <record id="action_library_book_information_author" model="ir.actions.act_window">
+      <field name="name">action.library.book.information.author</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">library.book</field>
+      <field name="view_mode">form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+         Haciendo pruebas con las action.view
+        </p><p>
+         Despliega informacion sobre el autor.
+        </p>
+      </field>
+  </record>
+
       <!--Menu-->
 
       <menuitem id="library_menu_root" name="Library" sequence="1"/>
       <menuitem id="library_menu_root_category" name="Library" sequence="1" parent="library_menu_root"/>
       <menuitem id="action_library_menu_book" name="Books" sequence="1" parent="library_menu_root_category"
                 action="action_library_book"/>
-
-
 
 </odoo>

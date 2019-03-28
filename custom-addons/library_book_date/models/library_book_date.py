@@ -9,7 +9,7 @@ class Library_Book_Date(models.Model):
     @api.onchange('date')
     def onchange_date(self):             # mensaje de error.
         today = fields.Date.today()
-        if self.date  > today:
+        if self.date and self.date > today:
             raise exceptions.UserError(
                 'Date should be less than today')
 

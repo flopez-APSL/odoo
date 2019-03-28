@@ -10,8 +10,9 @@ class LibraryAuthor(models.Model):
     # country_image = fields.Binary(related='country_id.image')  intento para coger un único campo de otro modelo.
 
     book_ids = fields.Many2many('library.book', string="Books")
+    book_id = fields.Many2one(comodel_name='library.book', string="Books")
 
-    count_books = fields.Integer(compute='total_books', string="Total Books")
+    count_books = fields.Integer(compute='total_books', string="Total Books", readonly=True)
 
     @api.depends('book_ids')
     def total_books(self):
