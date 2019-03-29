@@ -1,0 +1,87 @@
+<odoo>
+  <data>
+    <!-- tree view definition -->
+
+    <record model="ir.ui.view" id="modulo_basico.list">
+      <field name="name">modulo_basico list</field>
+      <field name="model">modulo.fields</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+
+
+    <!-- Vista del formulario -->
+
+    <record id="view_form_modulo_basico" model="ir.ui.view">
+        <field name="name">Formulario</field>
+        <field name="model">modulo.fields</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="fieldchar"/>
+                        <field name="booleano"/>
+                        <field name="fieldfloat"/>
+                        <field name="integerfield"/>
+                        <field name="fielddate"/>
+                        <field name="fielddatetime"/>
+                        <field name="fieldhtml"/>
+                        <field name="fieldtext"/>
+                        <field name="fieldchoose"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+      <!-- Inherit Form View to Modify it -->
+      <!--<record id="view_relational_inherit" model="ir.ui.view">-->
+          <!--<field name="name">view.relational.inherit</field>-->
+          <!--<field name="model">sale.order</field>-->
+          <!--<field name="inherit_id" ref="sale.view_order_Form"/>-->
+          <!--<field name="arch" type="xml">-->
+              <!--<xpath expr="//sheet" position="inside">-->
+                 <!--<field name="name"/>-->
+              <!--</xpath>-->
+          <!--</field>-->
+      <!--</record>-->
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="modulo_basico.action_window">
+      <field name="name">Conocimiento Básico para la creación de Modulos</field>
+      <field name="res_model">modulo.fields</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+
+    <menuitem name="Modulo Base" id="modulo_basico.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Elementos" id="modulo_basico.menu_1" parent="modulo_basico.menu_root"/>
+    <!--<menuitem name="Menu 2" id="modulo_basico.menu_2" parent="modulo_basico.menu_root"/> -->
+
+    <!-- actions -->
+
+    <menuitem name="Tipo de Campos" id="modulo_basico.menu_1_list" parent="modulo_basico.menu_1"
+              action="modulo_basico.action_window"/>
+
+    <!--<menuitem name="Campos Relaciones" id="modulo_basico.menu_2_list" parent="modulo_basico.menu_1"-->
+              <!--action="modulo_basico.action_window"/>-->
+      
+    <!--<menuitem name="Server to list" id="modulo_basico" parent="modulo_basico.menu_2"
+              action="modulo_basico.action_server"/>    -->
+
+  </data>
+  
+</odoo>

@@ -3,15 +3,14 @@
     'name': "modulo_basico",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Elementos basicos en el desarrollo en Odoo""",
 
     'description': """
-        Long description of module's purpose
+       Cuestiones básicas para la generación de un modulo en odoo
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "Fernando Lopez",
+    'website': "http://www.apsl.net",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/11.0/odoo/addons/base/module/module_data.xml
@@ -20,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'sale'],
 
     # always loaded
     'data': [

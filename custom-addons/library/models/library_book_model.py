@@ -12,16 +12,6 @@ class LibraryBook(models.Model):
     isbn = fields.Char(string='ISBN', size=13)
     description = fields.Html(string='Description')
     sales = fields.Integer(string="Sales", required=False, default=0)
-    winner = fields.Char(compute='most_sold', string="Sales Record", readonly=True)
-    category_id = fields.Many2one('library.category', string='Category')
-    short_name = fields.Char('Short Title')
-    author = fields.Many2one(comodel_name='library.author', string='Author')
-
-    def name_get(self):
-        result = []
-        for record in self:
-            result.append((record.id, "{} ({})".format(record.name, record.author.name)))
-        return result
 
     @api.depends('sales')
     def most_sold(self):
@@ -33,19 +23,30 @@ class LibraryBook(models.Model):
                 record.winner = record.name
             else:
                 record.winner = no_winner
+                
+    winner = fields.Char(compute='most_sold', string="Sales Record", readonly=True)
+    category_id = fields.Many2one('library.category', string='Category')
+    short_name = fields.Char('Short Title')
+    author = fields.Many2one(comodel_name='library.author', string='Author')
 
+    def name_get(self):
+        result = []
+        for record in self:
+            result.append((record.id, "{} ({})".format(record.name, record.author.name)))
+        return result
+    
     @api.constrains('name')
     def check_name(self):
         if not self.name:
             raise exceptions.ValidationError('Registre los campos obligatorios')
 
-    @api.multi
     def action_library_book_information_author(self):
+                    #  import ipdb;ipdb.set_trace()          programa para debugear.
         return {
             "name": "Author Information",
             "view_type": "form",
             "view_mode": "form",
             "res_model": "library.author",
             "type": "ir.actions.act_window",
-            "red_id": self.id,
-        }
+            "res_id": self.author.id,
+       }

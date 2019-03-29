@@ -2,9 +2,9 @@
   <data>
     <!-- explicit list view definition -->
     <!--
-    <record model="ir.ui.view" id="modulo_base.list">
-      <field name="name">modulo_base list</field>
-      <field name="model">modulo_base.modulo_base</field>
+    <record model="ir.ui.view" id="modulo_basico.list">
+      <field name="name">modulo_basico list</field>
+      <field name="model">modulo_basico.modulo_basico</field>
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
@@ -17,17 +17,17 @@
 
     <!-- actions opening views on models -->
     <!--
-    <record model="ir.actions.act_window" id="modulo_base.action_window">
-      <field name="name">modulo_base window</field>
-      <field name="res_model">modulo_base.modulo_base</field>
+    <record model="ir.actions.act_window" id="modulo_basico.action_window">
+      <field name="name">modulo_basico window</field>
+      <field name="res_model">modulo_basico.modulo_basico</field>
       <field name="view_mode">tree,form</field>
     </record>
     -->
 
     <!-- server action to the one above -->
     <!--
-    <record model="ir.actions.server" id="modulo_base.action_server">
-      <field name="name">modulo_base server</field>
+    <record model="ir.actions.server" id="modulo_basico.action_server">
+      <field name="name">modulo_basico server</field>
       <field name="model_id" ref="model_modulo_base_modulo_base"/>
       <field name="state">code</field>
       <field name="code">
@@ -42,19 +42,19 @@
 
     <!-- Top menu item -->
     <!--
-    <menuitem name="modulo_base" id="modulo_base.menu_root"/>
+    <menuitem name="modulo_basico" id="modulo_basico.menu_root"/>
     -->
     <!-- menu categories -->
     <!--
-    <menuitem name="Menu 1" id="modulo_base.menu_1" parent="modulo_base.menu_root"/>
-    <menuitem name="Menu 2" id="modulo_base.menu_2" parent="modulo_base.menu_root"/>
+    <menuitem name="Menu 1" id="modulo_basico.menu_1" parent="modulo_basico.menu_root"/>
+    <menuitem name="Menu 2" id="modulo_basico.menu_2" parent="modulo_basico.menu_root"/>
     -->
     <!-- actions -->
     <!--
-    <menuitem name="List" id="modulo_base.menu_1_list" parent="modulo_base.menu_1"
-              action="modulo_base.action_window"/>
-    <menuitem name="Server to list" id="modulo_base" parent="modulo_base.menu_2"
-              action="modulo_base.action_server"/>
+    <menuitem name="List" id="modulo_basico.menu_1_list" parent="modulo_basico.menu_1"
+              action="modulo_basico.action_window"/>
+    <menuitem name="Server to list" id="modulo_basico" parent="modulo_basico.menu_2"
+              action="modulo_basico.action_server"/>
     -->
   </data>
 </odoo>

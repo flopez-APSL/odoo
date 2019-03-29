@@ -2,8 +2,8 @@
 
 from odoo import models, fields, api
 
-# class modulo_base(models.Model):
-#     _name = 'modulo_base.modulo_base'
+# class modulo_basico(models.Model):
+#     _name = 'modulo_basico.modulo_basico'
 
 #     name = fields.Char()
 #     value = fields.Integer()
