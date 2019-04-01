@@ -36,10 +36,10 @@
       <field name='name'>library.book.tree.view</field>
       <field name='model'>library.book</field>
       <field name="arch" type="xml">
-        <tree string="Tree Book">
+        <tree string="Tree Book" decoration-info="winner == 'Bestseller'">
           <field name="name"/>
           <field name="active"/>
-          <field name="winner"/>        <!-- ttrs="{'invisible': [('name', '!=', 'winner')]}" -->
+          <field name="winner" attrs="{'invisible': [('winner', '!=', 'Bestseller')]}"/>   <!-- ocultar el campo si se es bestseller -->
           <field name="isbn"/>
         </tree>
       </field>

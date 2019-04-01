@@ -15,15 +15,18 @@ class LibraryBook(models.Model):
 
     @api.depends('sales')
     def most_sold(self):
-        controller = 0
-        no_winner = 'No Bestseller'
+        books = {}
+        for b in self:
+            books[b.name] = b.sales
+
+        orderbook = list(books.items())
+        orderbook.sort(key=lambda sales: sales[1], reverse=True)
         for record in self:
-            if controller < record.sales:
-                controller = record.sales
-                record.winner = record.name
+            if record.name == orderbook[0][0]:
+                record.winner = 'Bestseller'
             else:
-                record.winner = no_winner
-                
+                record.winner = 'No Bestseller'
+
     winner = fields.Char(compute='most_sold', string="Sales Record", readonly=True)
     category_id = fields.Many2one('library.category', string='Category')
     short_name = fields.Char('Short Title')
