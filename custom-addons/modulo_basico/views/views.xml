@@ -58,9 +58,10 @@
     <record model="ir.actions.act_window" id="modulo_basico.action_window">
       <field name="name">Conocimiento Básico para la creación de Modulos</field>
       <field name="res_model">modulo.fields</field>
+     <field name="type">ir.actions.act_window</field>
       <field name="view_mode">tree,form</field>
     </record>
-
+  
 
 
 
