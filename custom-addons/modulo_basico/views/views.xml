@@ -40,17 +40,17 @@
     </record>
 
 
-      <!-- Inherit Form View to Modify it -->
-      <!--<record id="view_relational_inherit" model="ir.ui.view">-->
-          <!--<field name="name">view.relational.inherit</field>-->
-          <!--<field name="model">sale.order</field>-->
-          <!--<field name="inherit_id" ref="sale.view_order_Form"/>-->
-          <!--<field name="arch" type="xml">-->
-              <!--<xpath expr="//sheet" position="inside">-->
-                 <!--<field name="name"/>-->
-              <!--</xpath>-->
-          <!--</field>-->
-      <!--</record>-->
+       Inherit Form View to Modify it
+      <record id="view_relational_inherit" model="ir.ui.view">
+          <field name="name">view.relational.inherit</field>
+          <field name="model">sale.order</field>
+          <field name="inherit_id" ref="sale.view_order_Form"/>
+          <field name="arch" type="xml">
+              <xpath expr="//sheet" position="inside">
+                 <field name="name"/>
+              </xpath>
+          </field>
+      </record>
 
 
     <!-- actions opening views on models -->
@@ -61,7 +61,13 @@
      <field name="type">ir.actions.act_window</field>
       <field name="view_mode">tree,form</field>
     </record>
-  
+
+      <record model="ir.actions.act_window" id="modulo_relacional.action_window">
+      <field name="name">Campos Relacionales</field>
+      <field name="res_model">modulo.relacional</field>
+     <field name="type">ir.actions.act_window</field>
+      <field name="view_mode">tree,form</field>
+    </record>
 
 
 
@@ -77,8 +83,8 @@
     <menuitem name="Tipo de Campos" id="modulo_basico.menu_1_list" parent="modulo_basico.menu_1"
               action="modulo_basico.action_window"/>
 
-    <!--<menuitem name="Campos Relaciones" id="modulo_basico.menu_2_list" parent="modulo_basico.menu_1"-->
-              <!--action="modulo_basico.action_window"/>-->
+    <menuitem name="Campos Relaciones" id="modulo_basico.menu_2_list" parent="modulo_basico.menu_1"
+              action="modulo_relacional.action_window"/>
       
     <!--<menuitem name="Server to list" id="modulo_basico" parent="modulo_basico.menu_2"
               action="modulo_basico.action_server"/>    -->

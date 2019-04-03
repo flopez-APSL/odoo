@@ -18,8 +18,6 @@ class ModuloFields(models.Model):
     fieldtext = fields.Text(string="Texto", required=False, )
     fieldchoose = fields.Selection(string="Selection: ", selection=[('a', 'Opción 1'), ('b', 'Opción 2'), ], required=False, )
 
-
-
     @api.depends('FIELDS_NAMES')
     def _compute_amount(self):
         """
@@ -28,6 +26,11 @@ class ModuloFields(models.Model):
         pass
 
 
+class NewModule(models.Model):
+    _name = 'modulo.relacional'
+    _inherit = 'sale.order'
+
+    name = fields.Char('Campos Relacionales')
 
 
 
